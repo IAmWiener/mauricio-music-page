@@ -1,0 +1,819 @@
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s cubic-bezier(0.4,0,0.2,1);
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.3), 0 10px 40px #facc1533;
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(250, 204, 21, 0.15), 0 10px 40px #facc1533;
+  }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 2.5s infinite;
+}
+
+@keyframes floatNote {
+  0% {
+    opacity: 0.7;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px) scale(1.2) rotate(20deg);
+  }
+}
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar styles - minimalista */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 1px;
+  transition: background 0.3s ease;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dark .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Animación marquee para títulos largos */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 10s linear infinite;
+}
+
+/* Video Modals Interface Styles */
+.video-modals-interface {
+  background: linear-gradient(135deg, #000000 0%, #0a0a0a 30%, #111111 70%, #1a1a1a 100%);
+  color: #ffffff;
+  font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  padding: 4rem 0;
+}
+
+.video-modals-interface .video-container {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1400px;
+  padding: 3rem 1rem;
+  flex-wrap: wrap;
+  perspective: 1000px;
+}
+
+.video-modals-interface .video-modal {
+  position: relative;
+  background: linear-gradient(145deg, #1a1a1a 0%, #0f0f0f 100%);
+  border-radius: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  /* ELIMINADAS TODAS LAS TRANSICIONES PARA EVITAR PALPITACIONES */
+  transition: none;
+  will-change: auto;
+  backface-visibility: hidden;
+}
+
+.video-modals-interface .video-modal.side {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.video-modals-interface .video-modal.center {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255,255,255,0.1);
+}
+
+/* HOVER COMPLETAMENTE ELIMINADO PARA EVITAR PALPITACIONES */
+.video-modals-interface .video-modal:hover {
+  /* Sin efectos hover que puedan causar palpitaciones */
+}
+
+.video-modals-interface .video-modal.side:hover {
+  /* Sin efectos hover que puedan causar palpitaciones */
+}
+
+.video-modals-interface .video-modal.center:hover {
+  /* Sin efectos hover que puedan causar palpitaciones */
+}
+
+.video-modals-interface .video-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 24px 24px 0 0;
+  /* COMPLETAMENTE ESTÁTICO */
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+  will-change: auto !important;
+  contain: strict !important;
+  isolation: isolate !important;
+}
+
+.video-modals-interface .video-content video,
+.video-modals-interface .video-preview,
+.video-modals-interface .video-element,
+.video-modals-interface video {
+  /* ELIMINACIÓN ULTRA-AGRESIVA DE PALPITACIONES */
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  will-change: auto !important;
+  backface-visibility: hidden !important;
+  perspective: none !important;
+  transform-style: flat !important;
+  
+  /* Propiedades de video completamente estáticas */
+  object-fit: cover !important;
+  background: #0a0a0a !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 24px 24px 0 0 !important;
+  
+  /* Sin filtros para evitar re-rendering */
+  filter: none !important;
+  
+  /* Prevenir cualquier efecto visual */
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  
+  /* Rendering ultra-estable */
+  contain: strict !important;
+  isolation: isolate !important;
+  pointer-events: none !important;
+}
+
+/* ESTABILIZACIÓN ULTRA-AGRESIVA ANTI-PALPITACIONES */
+.video-modals-interface .video-content {
+  will-change: auto !important;
+  backface-visibility: hidden !important;
+  transform: translateZ(0) !important;
+  contain: layout style paint !important;
+  isolation: isolate !important;
+}
+
+/* REGLA ESPECÍFICA PARA VIDEOS - SIN EXCEPCIONES */
+.video-modals-interface video,
+.video-modals-interface .video-preview,
+.video-modals-interface .video-element {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+  will-change: auto !important;
+  backface-visibility: hidden !important;
+  perspective: none !important;
+  transform-style: flat !important;
+  contain: strict !important;
+}
+
+/* ELIMINACIÓN TOTAL DE TRANSICIONES PROBLEMÁTICAS */
+.video-modals-interface .video-modal,
+.video-modals-interface .video-content,
+.video-modals-interface .video-info,
+.video-modals-interface .video-overlay {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+  will-change: auto !important;
+}
+
+/* Solo botones pueden tener transiciones mínimas */
+.video-modals-interface .play-button,
+.video-modals-interface .expand-button {
+  transition: background 0.2s ease, border-color 0.2s ease !important;
+}
+
+.video-modals-interface .dropdown-trigger {
+  transition: background 0.2s ease !important;
+}
+
+/* TOTAL ESTABILIZACIÓN DE VIDEOS Y CONTENIDO */
+.video-modals-interface video,
+.video-modals-interface .video-content,
+.video-modals-interface .video-preview,
+.video-modals-interface .video-info,
+.video-modals-interface .video-overlay,
+.video-modals-interface .video-modal * {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+  will-change: auto !important;
+  backface-visibility: hidden !important;
+  perspective: none !important;
+  contain: strict !important;
+}
+
+/* Excepción solo para partículas musicales */
+.video-modals-interface .music-note-particle {
+  transition: opacity 1.5s ease-out !important;
+  animation: musicNoteFloat 1.5s ease-out forwards !important;
+}
+
+/* Evitar cualquier fluctuación en la carga de videos */
+.video-modals-interface .video-content video[data-loading="true"] {
+  opacity: 0 !important;
+}
+
+.video-modals-interface .video-content video[data-loaded="true"] {
+  opacity: 0.2 !important;
+}
+
+/* Overlay estabilizado para eliminar palpitaciones */
+.video-modals-interface .video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+  pointer-events: none;
+  
+  /* Estabilización total del overlay */
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+  will-change: auto !important;
+  backface-visibility: hidden !important;
+}
+
+/* Contenedor de controles del video */
+.video-modals-interface .video-controls {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 20px;
+  z-index: 2;
+}
+
+.video-modals-interface .play-button:hover {
+  background: rgba(255,255,255,0.18);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Botón de expandir - MINIMALISTA */
+.video-modals-interface .expand-button:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Icono de expandir */
+.video-modals-interface .expand-icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.video-modals-interface .expand-icon::before,
+.video-modals-interface .expand-icon::after {
+  content: '';
+  position: absolute;
+  background: #fff;
+}
+
+.video-modals-interface .expand-icon::before {
+  width: 12px;
+  height: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.video-modals-interface .expand-icon::after {
+  width: 2px;
+  height: 12px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.video-modals-interface .play-icon {
+  width: 0;
+  height: 0;
+  border-left: 15px solid rgba(255, 255, 255, 0.8);
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  margin-left: 3px;
+}
+
+.video-modals-interface .video-modal.center .play-icon {
+  border-left: 20px solid rgba(255, 255, 255, 0.9);
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+}
+
+/* Icono de pausa para cuando está reproduciendo */
+.video-modals-interface .play-icon.pause {
+  width: 16px;
+  height: 16px;
+  border: none;
+  margin-left: 0;
+  position: relative;
+  background: transparent;
+}
+
+.video-modals-interface .play-icon.pause::before,
+.video-modals-interface .play-icon.pause::after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  width: 4px;
+  height: 16px;
+  top: 0;
+}
+
+.video-modals-interface .play-icon.pause::before {
+  left: 2px;
+}
+
+.video-modals-interface .play-icon.pause::after {
+  right: 2px;
+}
+
+.video-modals-interface .video-modal.center .play-icon.pause::before,
+.video-modals-interface .video-modal.center .play-icon.pause::after {
+  background: rgba(255, 255, 255, 0.9);
+  width: 5px;
+  height: 20px;
+}
+
+.video-modals-interface .video-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+  padding: 20px 16px 16px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.video-modals-interface .video-modal:hover .video-info {
+  transform: translateY(0);
+}
+
+.video-modals-interface .video-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #ffffff;
+}
+
+.video-modals-interface .video-modal.center .video-title {
+  font-size: 16px;
+}
+
+.video-modals-interface .video-duration {
+  font-size: 12px;
+  color: #999;
+}
+
+.video-modals-interface .progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  width: var(--progress, 0%);
+  transition: width 0.3s ease;
+}
+
+.video-modals-interface .video-modal.center .progress-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.video-modals-interface .thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a1a 100%);
+  opacity: 0.3;
+}
+
+/* Dropdown de lista de videos - MINIMALISTA */
+.video-modals-interface .video-list-dropdown {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+}
+
+.video-modals-interface .dropdown-trigger:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.video-modals-interface .dropdown-icon {
+  width: 4px;
+  height: 4px;
+  background: #fff;
+  border-radius: 50%;
+  position: relative;
+}
+
+.video-modals-interface .dropdown-icon::before,
+.video-modals-interface .dropdown-icon::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.video-modals-interface .dropdown-icon::before {
+  top: -8px;
+}
+
+.video-modals-interface .dropdown-icon::after {
+  top: 8px;
+}
+
+.video-modals-interface .video-list {
+  position: absolute;
+  top: 48px;
+  right: 0;
+  min-width: 280px;
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0.95), rgba(10, 10, 10, 0.98));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  backdrop-filter: blur(30px);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px) scale(0.95);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: 420px;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+  scrollbar-width: thin;
+  scrollbar-color: #888 #333;
+}
+
+/* Estilos personalizados para scrollbar en WebKit */
+.video-modals-interface .video-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.video-modals-interface .video-list::-webkit-scrollbar-track {
+  background: #333;
+  border-radius: 10px;
+}
+
+.video-modals-interface .video-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.video-modals-interface .video-list::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+.video-modals-interface .video-list.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.video-modals-interface .video-list-item {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: transparent;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  color: inherit;
+  font-family: inherit;
+  text-align: left;
+  width: 100%;
+  position: relative;
+}
+
+.video-modals-interface .video-list-item:last-child {
+  border-bottom: none;
+}
+
+.video-modals-interface .video-list-item:hover {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.08));
+  border-left: 4px solid rgba(251, 191, 36, 0.8);
+}
+
+.video-modals-interface .video-list-item.active {
+  background: linear-gradient(90deg, rgba(251, 191, 36, 0.2), rgba(251, 191, 36, 0.1));
+  border-left: 4px solid #fbbf24;
+}
+
+.video-modals-interface .video-list-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 2px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.video-modals-interface .video-list-duration {
+  font-size: 12px;
+  color: #bbb;
+  font-weight: 500;
+}
+
+/* Scrollbar personalizada */
+.video-modals-interface .video-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.video-modals-interface .video-list::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  margin: 4px 0;
+}
+
+.video-modals-interface .video-list::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.4) 100%);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+.video-modals-interface .video-list::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 100%);
+  transform: scaleX(1.2);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .video-modals-interface .video-container {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .video-modals-interface .video-modal.side {
+    width: 300px;
+    height: 180px;
+  }
+  
+  .video-modals-interface .video-modal.center {
+    width: 350px;
+    height: 220px;
+  }
+
+  .video-modals-interface .video-list {
+    min-width: 220px;
+    max-width: 280px;
+    right: -10px;
+    left: auto;
+    transform-origin: top right;
+  }
+
+  .video-modals-interface .video-list.active {
+    transform: translateY(0) scale(0.95);
+  }
+}
+
+@media (max-width: 480px) {
+  .video-modals-interface .video-container {
+    padding: 0.5rem;
+  }
+
+  .video-modals-interface .video-modal.side {
+    width: 280px;
+    height: 160px;
+  }
+  
+  .video-modals-interface .video-modal.center {
+    width: 320px;
+    height: 200px;
+  }
+
+  .video-modals-interface .video-list {
+    min-width: 200px;
+    max-width: 240px;
+    max-height: 250px;
+  }
+
+  .video-modals-interface .dropdown-trigger {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Animaciones SUTILES de notas musicales */
+@keyframes musicNoteFloat {
+  0% {
+    opacity: 0.6;
+    transform: translateY(0) scale(0.8) rotate(0deg);
+  }
+  20% {
+    opacity: 0.5;
+    transform: translateY(-15px) scale(0.9) rotate(20deg);
+  }
+  50% {
+    opacity: 0.4;
+    transform: translateY(-30px) scale(1) rotate(40deg);
+  }
+  80% {
+    opacity: 0.2;
+    transform: translateY(-45px) scale(0.7) rotate(60deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px) scale(0.5) rotate(80deg);
+  }
+}
+
+.video-modals-interface .music-note-particle {
+  user-select: none;
+  animation: musicNoteFloat 2s ease-out forwards;
+}
